@@ -1,0 +1,7 @@
+qiskit[visualization]
+qiskit-aer
+qiskit-ibm-runtime
+notebook
+ipykernel
+ket-lang[plot]>=0.9,<0.10
+pennylane
