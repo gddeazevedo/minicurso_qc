@@ -1,0 +1,9 @@
+.git/
+.env/
+.venv*/
+.cache/
+**/__pycache__/
+**/.ipynb_checkpoints/
+*.py[cod]
+resultados/
+media/
