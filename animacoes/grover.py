@@ -9,12 +9,12 @@ class GroverAlgorithm(Scene):
         iterations = 2
 
         title = Text("Algoritmo de Grover", font_size=42)
-        title.to_edge(UP)
+        title.to_edge(UP, buff=0.3)
 
         subtitle = MathTex(
             r"\text{Busca por } |5\rangle \text{ em } N=8"
         ).scale(0.8)
-        subtitle.next_to(title, DOWN)
+        subtitle.next_to(title, DOWN, buff=0.2)
 
         self.play(Write(title), Write(subtitle))
 
@@ -22,12 +22,12 @@ class GroverAlgorithm(Scene):
             x_range=[-0.5, n_states - 0.5, 1],
             y_range=[-0.5, 1, 0.25],
             x_length=10,
-            y_length=4,
+            y_length=3.4,
             tips=False,
             axis_config={"include_numbers": False},
         )
 
-        axes.shift(DOWN * 0.8)
+        axes.shift(DOWN * 1.2)
 
         state_labels = VGroup()
 
@@ -54,7 +54,7 @@ class GroverAlgorithm(Scene):
             r"\sum_{x=0}^{7}|x\rangle"
         ).scale(0.75)
 
-        initial_label.to_corner(UL).shift(DOWN * 1.3)
+        initial_label.next_to(subtitle, DOWN, buff=0.4)
 
         self.play(
             LaggedStart(
@@ -75,7 +75,7 @@ class GroverAlgorithm(Scene):
                 f"Iteração de Grover {iteration + 1}",
                 font_size=30
             )
-            iteration_label.next_to(subtitle, DOWN)
+            iteration_label.next_to(subtitle, DOWN, buff=0.25)
 
             self.play(FadeIn(iteration_label))
 
@@ -86,7 +86,7 @@ class GroverAlgorithm(Scene):
                 r"(-1)^{f(x)}|x\rangle"
             ).scale(0.75)
 
-            oracle_label.to_corner(UL).shift(DOWN * 1.4)
+            oracle_label.next_to(iteration_label, DOWN, buff=0.25)
 
             oracle_box = SurroundingRectangle(
                 bars[target],
@@ -144,7 +144,7 @@ class GroverAlgorithm(Scene):
                 r"a_i \rightarrow 2\bar{a}-a_i"
             ).scale(0.72)
 
-            diffuser_label.to_corner(UL).shift(DOWN * 1.4)
+            diffuser_label.next_to(iteration_label, DOWN, buff=0.25)
 
             self.play(Write(diffuser_label))
 
@@ -213,15 +213,13 @@ class GroverAlgorithm(Scene):
             rf"{probability:.2f}"
         ).scale(0.85)
 
-        result.to_corner(UL).shift(DOWN * 1.4)
-
         success = Text(
             "Estado encontrado!",
             color=GREEN,
             font_size=34
         )
 
-        success.next_to(result, DOWN)
+        VGroup(result, success).arrange(RIGHT, buff=0.5).move_to(UP * 1.3)
 
         self.play(
             Create(final_box),
