@@ -1,5 +1,14 @@
 services:
+  manim:
+    image: manimcommunity/manim:v0.22.0
+    working_dir: /manim
+    volumes:
+      - .:/manim
+    entrypoint: ["manim"]
+    command: ["-qm", "animacoes/grover.py", "GroverAlgorithm"]
+
   minicurso:
+    profiles: ["notebooks"]
     build: .
     image: qc-minicurso
     ports:
